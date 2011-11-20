@@ -1,0 +1,23 @@
+{
+  "author": "Siddharth Mahendraker <siddharth_mahen@me.com>",
+  "name": "stest",
+  "description": "Sane event driven async testing.",
+  "version": "0.0.1",
+  "repository": {
+    "url": ""
+  },
+  "main": "lib/stest.js",
+  "scripts": {
+    "test": "srunner -s -r test/test-*.js"
+  },
+  "bin": {
+    "srunner": "./bin/srunner.js"
+  },
+  "engines": {
+    "node": ">=0.4.12"
+  },
+  "dependencies": {
+    "optimist": ">=0.2.8"
+  },
+  "devDependencies": {}
+}
