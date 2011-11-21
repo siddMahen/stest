@@ -3,22 +3,28 @@
   "name": "stest",
   "description": "Sane event driven async testing.",
   "version": "0.0.1",
+  "keywords": [
+    "async",
+    "test",
+    "event"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/siddMahen/stest.git"
   },
   "main": "lib/stest.js",
   "scripts": {
-    "test": "srunner -s -r test/test-*.js"
+    "test": "srunner -r test/test-.*.js"
   },
   "bin": {
-    "srunner": "./bin/srunner.js"
+    "srunner": "/bin/srunner.js"
   },
   "engines": {
     "node": ">=0.4.12"
   },
   "dependencies": {
-    "optimist": ">=0.2.8"
+    "optimist": ">=0.2.8",
+    "ansi-color": "0.2.x"
   },
   "devDependencies": {}
 }
