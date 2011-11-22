@@ -2,7 +2,7 @@
   "author": "Siddharth Mahendraker <siddharth_mahen@me.com>",
   "name": "stest",
   "description": "A sane event driven async testing framework.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "keywords": [
     "async",
     "test",
@@ -16,17 +16,17 @@
   },
   "main": "lib/stest.js",
   "scripts": {
-    "test": "srunner -r test/test-.*\.js"
+    "test": "srunner -r test/test-.*\\.js"
   },
   "bin": {
-    "srunner": "/bin/srunner.js"
+    "srunner": "bin/srunner.js"
   },
   "engines": {
     "node": ">=0.4.12"
   },
   "dependencies": {
     "optimist": ">=0.2.8",
-    "ansi-color": "0.2.x"
+    "ansi-color": "0.2.1"
   },
   "devDependencies": {}
 }
