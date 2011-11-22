@@ -1,4 +1,3 @@
 # TODO
 
-* Add tests for `stest`
-
+* Add code coverage

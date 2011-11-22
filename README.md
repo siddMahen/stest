@@ -1,4 +1,8 @@
-# stest - Sane async tests
+# stest - A Sane Async Testing Framework
+
+Frustrated with other testing frameworks which 
+kinda sucked at handling async, I decided to make
+stest.
 
 # Installation:
 
@@ -26,8 +30,8 @@ A very simple test:
 		other_event: function(hello){
 			assert.equal("Hello!", hello);
 		},
-		teardown: function(){
-
+		teardown: function(errors){
+			if(errors.length > 0) assert.ok(0);
 		}
 	}).run();
 
@@ -38,23 +42,28 @@ corresponding functions associated with the name of the
 event you emitted.
 
 The `setup` and `teardown` functions are given to you
-to setup your test case. 
+to setup your test case, and optionally, to perform 
+a teardown.
 
-The `opts` argument allows you to specify a `timeout`.
-If all async calls are not called before that time, then 
-the `stest` will give you a heads up.
+The `opts` argument allows you to specify a `timeout`
+in miliseconds. If all async calls are not called 
+before that time, then the `stest` will give you a heads up.
 
-Tests can be run en masse like this:
+See the source for more details and documentation.
 
-	srunner -r test/test-*.js
+# Running Tests:
 
-Or like this:
+Tests can be run en masse using `srunner`:
+
+	srunner -r test/test-.*\.js
+
+To run tests silently, run `srunner` with the `-s` 
+option. If you prefer not to use `srunner`, you can 
+still run tests like this:
 
 	node test.js
 
-If you prefer not to use `srunner`.
-
-# License
+# License:
 
 (The MIT License)
 
@@ -77,4 +86,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-

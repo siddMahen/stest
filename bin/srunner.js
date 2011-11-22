@@ -9,14 +9,21 @@ var	path = require("path"),
 	.demand(["r"])
 	.argv;
 
-//options
+/* srunner args
+ *
+ * -r: regexp of files to test
+ * -s: silent
+ *
+ */
+
 var silent = argv.s ? argv.s : false;
 var r = path.join(process.cwd(), argv.r);
 
 var info = function(buffer, colr){
-	var string = buffer.toString();
-	if(!silent)
+	if(!silent){
+		var string = buffer.toString();
 		process.stdout.write(color(string, colr));
+	}
 }
 
 var dir = path.dirname(r);
@@ -39,6 +46,6 @@ if(!filtered.length){
 filtered.forEach(function(file){
 	cp.exec("node "+dir+"/"+file, function(err, stdout, stderr){
 		if(err) throw err;
-		if(!silent) info(stdout);
+		info(stdout);
 	});
 });

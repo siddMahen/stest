@@ -1,6 +1,7 @@
 var assert = require("assert"),
 	stest = require("../lib/stest");
 
+// defaults to 250 ms
 var opts = { timeout: 0 };
 
 stest.addCase("stest - basic tests", opts, {
@@ -24,5 +25,19 @@ stest.addCase("stest - basic tests", opts, {
 		assert.ok(data);
 		assert.deepEqual("hello", data);
 	}
+})
+.addCase("stest - advanced tests", opts, {
+	setup: function(promise){
+		setTimeout(function(){
+			promise.emit("ok");
+		}, 1000);   
+	},
+	ok: function(){},
+	teardown: function(errors){
+		assert.ok(errors);
+		var err = errors.pop();
+		assert.deepEqual("ok", err.event);
+		assert.deepEqual("stest", err.type);
+	}			  
 })
 .run();
