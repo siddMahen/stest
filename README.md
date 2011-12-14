@@ -1,7 +1,7 @@
 # stest - A Sane Async Testing Framework
 
 Frustrated with other testing frameworks which 
-kinda sucked at handling async, I decided to make
+kinda sucked at handling async, so I decided to make
 stest.
 
 # Installation:
@@ -55,10 +55,18 @@ See the source for more details and documentation.
 
 Tests can be run en masse using `srunner`:
 
-	srunner -r test/test-.*\.js
+	Usage: srunner [-s] [-c] [modules] -r [regexp]
 
-To run tests silently, run `srunner` with the `-s` 
-option. If you prefer not to use `srunner`, you can 
+	Options:
+  		-s, --silent  supress output                     [boolean]
+  		-c, --cover   files to output code coverage for  [string]
+  		-r, --regexp  regexp of files to test            [string]  [required]
+
+Which looks like this in the command line:
+
+	srunner -c lib/foobar.js -r test/test-.*\.js
+
+If you prefer not to use `srunner`, you can 
 still run tests like this:
 
 	node test.js

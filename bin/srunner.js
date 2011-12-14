@@ -72,31 +72,34 @@ if(!filtered.length){
 filtered.forEach(function(file){
 	cp.exec("node "+dir+"/"+file, function(err, stdout, stderr){
 		if(err) throw err;
-		if(!coverage) info(stdout);
+		info(stdout);
 	});
 });
 
-if(coverage){
-	var codecover = require("runforcover").cover(/.*/g);
-
+if(coverage.length){
+	var codecover = require("./coverage").cover(/.*/);
+	
 	coverage = coverage.map(function(file){ return path.join(process.cwd(), file); });
 	coverage.forEach(function(file){ require(file); });
-
+	
 	filtered = filtered.map(function(file){ return dir+"/"+file; });
 	filtered.forEach(function(file){ require(file); });
-
+	
+	var counter = 0;
 	coverage.forEach(function(obj, i){
+		counter++;
 		codecover(function(cd){
 			var stats = cd[obj].stats();
-		
+			
 			var col = "magenta";
 			info("Coverage for: "+path.basename(obj)+"\n", col); 
 			info("Lines seen: "+stats.seen+"\n", col);
 			info("Lines missing: "+stats.missing+"\n", col);
 			info("Percentage seen: "+Math.floor(stats.percentage*100)+"%\n", col);
 			info("\n");
+			counter--;
+			
+			if(counter === 0) codecover.release();
 		});
 	});
-
-	codecover.release();
 }
