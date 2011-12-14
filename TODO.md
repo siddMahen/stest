@@ -1,3 +1,4 @@
 # TODO
 
-* Add code coverage
+* Output code coverage results
+to file

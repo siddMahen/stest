@@ -4,7 +4,8 @@ var assert = require("assert"),
 // defaults to 250 ms
 var opts = { timeout: 0 };
 
-stest.addCase("stest - basic tests", opts, {
+stest
+.addCase("stest - basic tests", opts, {
 	setup: function(promise){
 		this.one = "one";
 		promise.emit("ctx_1");
