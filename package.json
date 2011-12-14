@@ -2,7 +2,7 @@
   "author": "Siddharth Mahendraker <siddharth_mahen@me.com>",
   "name": "stest",
   "description": "A sane event driven async testing framework.",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "keywords": [
     "async",
     "test",
