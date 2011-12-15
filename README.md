@@ -8,7 +8,7 @@ stest.
 
 Using `npm`:
 
-	npm install stest
+	npm install -g stest
 
 # Usage:
 
