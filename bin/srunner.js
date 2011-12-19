@@ -6,7 +6,7 @@ var	path = require("path"),
 	color = require("colors"),
 	optimist = require("optimist"),
 	argv = optimist
-	.usage("Usage: $0 [-s] [modules] -r [regexp]")
+	.usage("Usage: $0 [-s] -r [regexp]")
 	.options("s",{
 		description: "supress output",
 		alias:	"silent",
