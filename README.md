@@ -55,16 +55,15 @@ See the source for more details and documentation.
 
 Tests can be run en masse using `srunner`:
 
-	Usage: srunner [-s] [-c] [modules] -r [regexp]
+	Usage: srunner [-s] [modules] -r [regexp]
 
 	Options:
-  		-s, --silent  supress output                     [boolean]
-  		-c, --cover   files to output code coverage for  [string]
-  		-r, --regexp  regexp of files to test            [string]  [required]
+	  -s, --silent  supress output           [boolean]
+	  -r, --regexp  regexp of files to test  [string]  [required]
 
 Which looks like this in the command line:
 
-	srunner -c lib/foobar.js -r test/test-.*\.js
+	srunner -r test/test-.*\.js
 
 If you prefer not to use `srunner`, you can 
 still run tests like this:
