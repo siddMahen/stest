@@ -1,5 +1,13 @@
 var assert = require("assert"),
-	stest = require("../lib/stest");
+    fs = require("fs"),
+    util = require("util");
+
+// create a copy of stest
+fs.writeFileSync("../lib/stest2.js", fs.readFileSync("../lib/stest.js"));
+
+// use stest to test stest, easy as pie
+var ditto = require("../lib/stest2"),
+    stest = ditto.cover("../lib/stest");
 
 // defaults to 250 ms
 var opts = { timeout: 0 };
@@ -12,7 +20,7 @@ stest
 		promise.emit("ctx_2", this);
 		promise.emit("data", "hello");
 	},
-	ctx_1: function(){	
+	ctx_1: function(){
 		assert.ok(this.one);
 		assert.deepEqual("one", this.one);
 	},
@@ -31,7 +39,7 @@ stest
 	setup: function(promise){
 		setTimeout(function(){
 			promise.emit("ok");
-		}, 1000);   
+		}, 1000);
 	},
 	ok: function(){},
 	teardown: function(errors){
@@ -39,6 +47,13 @@ stest
 		var err = errors.pop();
 		assert.deepEqual("ok", err.event);
 		assert.deepEqual("stest", err.type);
-	}			  
+	}
 })
-.run();
+.run(function(){
+    // Run only the coverage data, because
+    // you can't have the same file test itself
+    ditto.runCoverage();
+});
+
+// Cleanup
+fs.unlinkSync("../lib/stest2.js");

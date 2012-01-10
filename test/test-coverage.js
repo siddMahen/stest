@@ -1,6 +1,6 @@
 var assert = require("assert"),
-	stest = require("../lib/stest.js"),
-	cov = stest.cover("./fixtures/coverage.js");
+	stest = require("../lib/stest"),
+	cov = stest.cover("./fixtures/coverage");
 
 // defaults to 250 ms
 var opts = { timeout: 0 };

@@ -1,8 +1,8 @@
 # stest - A Sane Async Testing Framework
 
-`stest` is a fun, fast and simple testing framework 
-particularly suited towards asynchronous code. It lets 
-you easily structure tests for code with both 
+`stest` is a fun, fast and simple testing framework
+particularly suited towards asynchronous code. It lets
+you easily structure tests for code with both
 synchronous and asynchronous methods without too much
 complexity.
 
@@ -24,10 +24,10 @@ A very simple test:
 
 	stest.addCase("stest", opts,{
 		setup: function(promise){
-			
+
 			promise.emit("event", 42);
 			promise.emit("other_event", "Hello!");
-			
+
 			mylib.async_func(function(err, obj){
 			    promise.emit("async", err, obj);
 			});
@@ -54,16 +54,19 @@ corresponding functions associated with the name of the
 events you've emitted.
 
 The `setup` and `teardown` functions are given to you
-to setup your test case, and to perform a teardown. 
+to setup your test case, and to perform a teardown.
 `setup` is required, `teardown` is optional.
 
 The `opts` argument allows you to specify a `timeout`
-in miliseconds. If all async calls are not called 
+in miliseconds. If all async calls are not called
 before that time, `stest` will give you a heads up.
 
 `stest` also supports code coverage using the `cover`
 method, which shows unseen LOC and gives you a brief
-overview of how much of the file you've tested.
+overview of how much of the file you've tested. Do note
+that `cover` may trip up if you have really whacky
+syntax (like assignments inside of conditional statements
+and such).
 
 See the source code and inline documentation for more details.
 
@@ -81,7 +84,7 @@ Which looks like this in the command line:
 
 	srunner -r test/test-.*\.js
 
-If you prefer not to use `srunner`, you can 
+If you prefer not to use `srunner`, you can
 still run tests like this:
 
 	node test.js
