@@ -48,7 +48,7 @@ if(typeof(argv.r) !== "string" || !argv.r.length){
 var dir = path.dirname(r);
 var filexp = new RegExp(path.basename(r));
 
-if(!path.existsSync(dir)){ 
+if(!fs.existsSync(dir)){ 
 	info("Invalid directory: This directory does not exist\n", "red");
 	process.exit();
 }
